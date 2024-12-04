@@ -1,12 +1,15 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-//req = request; res = response; next = ----
-var temporal = function(req, response, next) {
-  response.render('index', { title: 'Express' });
-}
-
 /* GET home page. */
-router.get('/', temporal);
+router.get("/", function (req, response, next) {
+  console.log("WELCOME TO THE JUNGLE");
+
+  response.render("index", { title: "Express" });
+});
+
+router.post("/", function (req, response, next) {
+  response.render("index", { title: req.body.surname });
+});
 
 module.exports = router;
