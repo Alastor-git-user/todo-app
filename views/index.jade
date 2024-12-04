@@ -3,6 +3,6 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  form
+  form(action="/" method="post")
     input(type="text" class="bar" placeholder="What do you want to write?" required name="surname")
     input(type="submit" class="button" value="send")
