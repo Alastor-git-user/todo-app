@@ -3,13 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, response, next) {
-  console.log("WELCOME TO THE JUNGLE");
 
-  response.render("index", { title: "Express" });
+  response.render("todos", { title: "Express" });
 });
 
 router.post("/", function (req, response, next) {
-  response.render("index", { title: "Index Rules!!!" });
+  response.render("todos", { title: req.body.task });
 });
 
 module.exports = router;
