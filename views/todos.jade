@@ -6,8 +6,12 @@ block content
   a(href="/") back to index
 
   each todo in todos
-    p #{todo.name}
+    .todo
+      .todo-name #{todo.name}
+      form(action="/todos?_method=DELETE" method="post")
+        input(type="hidden" name="id" value="#{todo.id}")
+        input(type="submit" class="button" value="delete")
 
   form(action="/todos" method="post")
-    input(type="text" class="bar" placeholder="What do you want to write?" required name="task")
-    input(type="submit" class="button" value="send")
+    input(type="text" class="bar" placeholder="task name pls" required name="task")
+    input(type="submit" class="button" value="create")
