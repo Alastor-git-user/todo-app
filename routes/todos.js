@@ -1,14 +1,25 @@
 var express = require("express");
 var router = express.Router();
 
-/* GET home page. */
-router.get("/", function (req, response, next) {
+const Todo = require("../models/todo");
 
-  response.render("todos", { title: "Express" });
+router.get("/", async function (req, response, next) {
+  const todos = await Todo.findAll();
+
+  response.render("todos", {
+    title: "Express",
+    todos: todos.map((todo) => ({ name: todo.taskName })),
+  });
 });
 
-router.post("/", function (req, response, next) {
-  response.render("todos", { title: req.body.task });
+router.post("/", async function (req, response, next) {
+  await Todo.create({ taskName: req.body.task });
+  const todos = await Todo.findAll();
+
+  response.render("todos", {
+    title: "FROM POST",
+    todos: todos.map((todo) => ({ name: todo.taskName })),
+  });
 });
 
 module.exports = router;

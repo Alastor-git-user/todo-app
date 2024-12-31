@@ -3,7 +3,11 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  a(href="/") back to index  
+  a(href="/") back to index
+
+  each todo in todos
+    p #{todo.name}
+
   form(action="/todos" method="post")
     input(type="text" class="bar" placeholder="What do you want to write?" required name="task")
     input(type="submit" class="button" value="send")
