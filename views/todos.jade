@@ -8,11 +8,9 @@ block content
   each todo in todos
     .todo
       .todo-name #{todo.name}
-      form(action="/todos?_method=DELETE" method="post")
-        input(type="hidden" name="id" value="#{todo.id}")
+      form(action="/todos/#{todo.id}?_method=DELETE" method="post")
         input(type="submit" class="button" value="delete")
-      form(action="/todos?_method=PATCH" method="post")
-        input(type="hidden" name="id" value="#{todo.id}")
+      form(action="/todos/#{todo.id}?_method=PATCH" method="post")
         input(type="hidden" name="complete" value="#{!todo.isCompleted}")
         input(type="submit" class="button" value="#{todo.isCompleted ? 'uncheck' : 'check'}")
 
