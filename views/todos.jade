@@ -11,6 +11,10 @@ block content
       form(action="/todos?_method=DELETE" method="post")
         input(type="hidden" name="id" value="#{todo.id}")
         input(type="submit" class="button" value="delete")
+      form(action="/todos?_method=PATCH" method="post")
+        input(type="hidden" name="id" value="#{todo.id}")
+        input(type="hidden" name="complete" value="#{!todo.isCompleted}")
+        input(type="submit" class="button" value="#{todo.isCompleted ? 'uncheck' : 'check'}")
 
   form(action="/todos" method="post")
     input(type="text" class="bar" placeholder="task name pls" required name="task")
