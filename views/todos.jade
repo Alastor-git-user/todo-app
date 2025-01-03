@@ -5,15 +5,10 @@ block content
   p Welcome to #{title}
   a(href="/") back to index
 
-  each todo in todos
-    .todo
-      .todo-name #{todo.name}
-      form(action="/todos/#{todo.id}?_method=DELETE" method="post")
-        input(type="submit" class="button" value="delete")
-      form(action="/todos/#{todo.id}?_method=PATCH" method="post")
-        input(type="hidden" name="complete" value="#{!todo.isCompleted}")
-        input(type="submit" class="button" value="#{todo.isCompleted ? 'uncheck' : 'check'}")
+  br
+  input(id="create-txt" type="text" class="bar" placeholder="task name pls" required)
+  button(id="create-btn" type="button" class="button") create
 
-  form(action="/todos" method="post")
-    input(type="text" class="bar" placeholder="task name pls" required name="task")
-    input(type="submit" class="button" value="create")
+  #todos-list
+
+  script(src="/js/main.js")
