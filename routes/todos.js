@@ -4,16 +4,7 @@ var router = express.Router();
 const Todo = require("../models/todo");
 
 router.get("/", async function (req, res, next) {
-  const todos = await Todo.findAll();
-
-  res.render("todos", {
-    title: "FROM GET",
-    todos: todos.map((todo) => ({
-      id: todo.id,
-      name: todo.taskName,
-      isCompleted: Boolean(todo.completedAt),
-    })),
-  });
+  res.render("todos");
 });
 
 // URL - Uniform Resource Locator
