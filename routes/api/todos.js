@@ -19,12 +19,27 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
-  await Todo.create({ taskName: req.body.taskName });
+  const newTodo = await Todo.create({ taskName: `<<${req.body.taskName}>>` });
 
-  res.json({
-    status: "200",
-    data: "creation complete",
-  });
+  res.json({ status: "201", data: newTodo });
+});
+
+router.delete("/:todoId", async function (req, res, next) {
+  await Todo.destroy({ where: { id: req.params.todoId } });
+
+  res.json({ status: "202", data: "todo has been delete" });
+});
+
+router.patch("/:todoId", async function (req, res, next) {
+  const todoId = req.params.todoId;
+
+  await Todo.update(
+    { completedAt: req.body.complete === "true" ? new Date() : null },
+    { where: { id: todoId } },
+  );
+  const todo = await Todo.findByPk(todoId);
+
+  res.json({ status: "203", data: todo });
 });
 
 module.exports = router;
